@@ -6,8 +6,7 @@ import static gitlet.util.MyUtils.exit;
 public class Main {
 
     /**
-     * Usage: java gitlet.Main ARGS, where ARGS contains
-     * <COMMAND> <OPERAND1> <OPERAND2> ...
+     * gitlet的main函数，控制台传参数
      */
     public static void main(String[] args) {
         //判断是否有命令行参数，没有就退出

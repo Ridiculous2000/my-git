@@ -8,14 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static gitlet.util.MyUtils.*;
+import static gitlet.util.Utils.readObject;
 import static gitlet.util.Utils.sha1;
 
-
-/**
- * The commit object.
- *
- * @author Exuanbo
- */
 public class Commit implements Serializable {
     // 提交的data
     private final Date date;
@@ -25,11 +20,12 @@ public class Commit implements Serializable {
     private final List<String> parents;
     // SHA1的id
     private final String id;
-    // commit的记录文件，路径由 SHA1 哈希生成
+    // commit的Object文件，路径由 SHA1 哈希生成
     private final File file;
-    // 跟踪的文件映射，键为文件路径，值为文件的 SHA1 哈希
+    // Commit跟踪的文件映射，键为文件路径，值为文件的 SHA1 哈希
     private final Map<String, String> tracked;
 
+    // 创建提交
     public Commit(String message, List<String> parents, Map<String, String> trackedFilesMap) {
         date = new Date();
         this.message = message;
@@ -39,9 +35,7 @@ public class Commit implements Serializable {
         file = getObjectFile(id);
     }
 
-    /**
-     * 初始化提交，初始化日期，message等信息，
-     */
+    // 初始化提交，初始化日期，message等信息
     public Commit() {
         date = new Date(0);
         message = "initial commit";
@@ -53,7 +47,6 @@ public class Commit implements Serializable {
         file = getObjectFile(id);
     }
 
-
     /**
      * 生成 SHA1 哈希，包含时间戳、消息、父提交列表和跟踪文件映射
      * @return SHA1 id
@@ -63,66 +56,48 @@ public class Commit implements Serializable {
     }
 
     /**
-     * 将此 Commit 实例保存到对象文件夹中
+     * 从 SHA1 哈希获取 Commit 实例
+     * @param id SHA1 id
+     * @return Commit instance
      */
+    public static Commit fromFile(String id) {
+        return readObject(getObjectFile(id), Commit.class);
+    }
+
+    // 将此 Commit 实例保存到对象文件夹中
     public void save() {
         saveObjectFile(file, this);
     }
 
-    /**
-     * Get the Date instance when the commit is created.
-     *
-     * @return Date instance
-     */
+    // 返回Commit创建日期
     public Date getDate() {
         return date;
     }
 
-    /**
-     * Get the timestamp.
-     *
-     * @return Date and time
-     */
+    // 返回格式化时间 （Thu Jan 1 00:00:00 1970 +0000）
     public String getTimestamp() {
-        // Thu Jan 1 00:00:00 1970 +0000
         DateFormat dateFormat = new SimpleDateFormat("EEE MMM d HH:mm:ss yyyy Z", Locale.ENGLISH);
         return dateFormat.format(date);
     }
 
-    /**
-     * Get the commit message.
-     *
-     * @return Commit message
-     */
+    // 获取提交信息
     public String getMessage() {
         return message;
     }
 
-    /**
-     * Get the parent commit ids.
-     *
-     * @return Array of parent commit ids.
-     */
+    // 返回父提交列表
     public List<String> getParents() {
         return parents;
     }
 
-    /**
-     * Get the tracked files Map with file path as key and SHA1 id as value.
-     *
-     * @return Map with file path as key and SHA1 id as value
-     */
+    // 返回Commit跟踪的文件映射
     public Map<String, String> getTracked() {
         return tracked;
     }
 
-
-
-    /**
-     * Get the SHA1 id.
-     * @return SHA1 id
-     */
+    // 返回对应的sha1 ID
     public String getId() {
         return id;
     }
+
 }

@@ -47,10 +47,9 @@ public class MyUtils {
 
 
     /**
-     * Get a File instance with the path generated from SHA1 id in the objects folder.
-     *
-     * @param id SHA1 id
-     * @return File instance
+     * 创建Object文件，根据传入的id，前面2位为文件夹，后面几位为文件名，创建对应的object文件
+     * @param id SHA1的id
+     * @return 创建的Object文件
      */
     public static File getObjectFile(String id) {
         String dirName = getObjectDirName(id);

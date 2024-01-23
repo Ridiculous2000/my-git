@@ -12,14 +12,6 @@ import java.util.Arrays;
 import java.util.Formatter;
 import java.util.List;
 
-
-/** Assorted utilities.
- *
- * Give this file a good read as it provides several useful utility functions
- * to save you some time.
- *
- *  @author P. N. Hilfinger
- */
 public class Utils {
 
     /** The length of a complete SHA-1 UID as a hexadecimal numeral. */
@@ -88,7 +80,7 @@ public class Utils {
 
     /* READING AND WRITING FILE CONTENTS */
 
-    /** 判断是不是普通文件，不是报错是就输出byte流. */
+    // 读取文件内容，判断是不是普通文件，不是报错是就输出byte流
     public static byte[] readContents(File file) {
         if (!file.isFile()) {
             throw new IllegalArgumentException("must be a normal file");
@@ -100,12 +92,11 @@ public class Utils {
         }
     }
 
-    /** Return the entire contents of FILE as a String.  FILE must
-     *  be a normal file.  Throws IllegalArgumentException
-     *  in case of problems. */
+    // 读取file内容,基于UTF-8 封装成String
     public static String readContentsAsString(File file) {
         return new String(readContents(file), StandardCharsets.UTF_8);
     }
+
 
     /**
      * 把contents的内容写到file
@@ -239,7 +230,7 @@ public class Utils {
     }
 
     /**
-     * 打印message后退出
+     * 打印message
      * @param msg 要打印的消息
      * @param args   要打印的参数
      */
