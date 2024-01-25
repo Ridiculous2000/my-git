@@ -2,7 +2,6 @@ package gitlet.bean;
 
 import java.io.File;
 import java.io.Serializable;
-import java.sql.Blob;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -99,5 +98,54 @@ public class Commit implements Serializable {
     public String getId() {
         return id;
     }
+
+    /**
+     * 返回 commit 日志，包括：分隔符，当前commit的id，创建的date，commit的message
+     * 如果是merge提交，还要额外打印parents信息（不是merge用不着打印parent，因为下一条就是parent的信息了）
+     * @return Log content
+     */
+    public String getLog() {
+        StringBuilder logBuilder = new StringBuilder();
+        logBuilder.append("===").append("\n");
+        logBuilder.append("commit").append(" ").append(id).append("\n");
+        // 对于合并提交，显示所有父提交的哈希
+        if (parents.size() > 1) {
+            logBuilder.append("Merge:");
+            for (String parent : parents) {
+                logBuilder.append(" ").append(parent, 0, 7);
+            }
+            logBuilder.append("\n");
+        }
+        logBuilder.append("Date:").append(" ").append(getTimestamp()).append("\n");
+        logBuilder.append(message).append("\n");
+        return logBuilder.toString();
+    }
+
+    /**
+     * 根据文件路径恢复跟踪的文件，
+     * @param filePath Path of the file
+     * @return true if file exists in commit
+     */
+    @SuppressWarnings("BooleanMethodIsAlwaysInverted")
+    public boolean restoreTracked(String filePath) {
+        // commit中没有记录就返回false
+        String blobId = tracked.get(filePath);
+        if (blobId == null) {
+            return false;
+        }
+        //根据Id拿到Blob对象并恢复
+        Blob.fromFile(blobId).writeContentToSource();
+        return true;
+    }
+
+    /**
+     * 恢复所有跟踪的文件，覆盖现有文件
+     */
+    public void restoreAllTracked() {
+        for (String blobId : tracked.values()) {
+            Blob.fromFile(blobId).writeContentToSource();
+        }
+    }
+
 
 }

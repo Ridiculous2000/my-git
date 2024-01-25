@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2fa184bc-48c0-4fdb-b691-18a8a444d1b3" name="变更" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test-dir/a.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitlet/HEAD" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitlet/index" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitlet/objects/8b/3cc24765c3fcb44e51261705be9e03af4eb5e4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitlet/objects/cf/d5a9c90c37acafe44f4c1b23f03e551582b56c" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitlet/refs/heads/master" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/Repository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/bean/Blob.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/bean/Blob.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/bean/Commit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/bean/Commit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/bean/StagingArea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/bean/StagingArea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/util/MyUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/util/MyUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Java/gitlet/util/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Java/gitlet/util/Utils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +32,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -58,10 +67,14 @@
     <property name="go.format.on.save.advertiser.fired" value="true" />
     <property name="go.formatter.settings.were.checked" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/test-dir" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\JavaProject\my-git\test-dir" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="gitlet" />
       <recent name="gitlet.util" />
@@ -69,10 +82,10 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="gitlet.Main" />
       <module name="my-git" />
-      <option name="PROGRAM_PARAMETERS" value="add /test-dir/a.txt" />
+      <option name="PROGRAM_PARAMETERS" value="checkout 2bf735" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="gitlet.util.*" />
@@ -83,11 +96,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="应用程序.Main" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -99,7 +107,8 @@
       <updated>1705836189299</updated>
       <workItem from="1705836190636" duration="24775000" />
       <workItem from="1705981015542" duration="8456000" />
-      <workItem from="1706022380806" duration="3339000" />
+      <workItem from="1706022380806" duration="25974000" />
+      <workItem from="1706162722302" duration="9194000" />
     </task>
     <servers />
   </component>
@@ -137,18 +146,58 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Repository.java</url>
-          <line>150</line>
+          <line>157</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Repository.java</url>
-          <line>42</line>
-          <option name="timeStamp" value="20" />
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Main.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Repository.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="21" />
+          <line>186</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Repository.java</url>
+          <line>197</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Main.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Main.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Repository.java</url>
+          <line>224</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/bean/StagingArea.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/bean/StagingArea.java</url>
+          <line>129</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Repository.java</url>
+          <line>247</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/Java/gitlet/Main.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

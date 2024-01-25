@@ -17,7 +17,7 @@ public class StagingArea implements Serializable {
     private final Map<String, String> added = new HashMap<>();
     // 已删除文件区，存储文件路径
     private final Set<String> removed = new HashSet<>();
-    // 跟踪的文件映射，键是文件路径，值是文件的 SHA1 哈希
+    // 跟踪commit过的文件当前的最新状况，key是path，value是sha1_Id
     private transient Map<String, String> tracked;
 
     /**
@@ -77,5 +77,83 @@ public class StagingArea implements Serializable {
     public void save() {
         writeObject(Repository.INDEX, this);
     }
+
+    /**
+     * 判断暂存区是否有内容（added和removed都为空说明没有文件添加、修改、删除）
+     * @return true if is clean
+     */
+    public boolean isClean() {
+        return added.isEmpty() && removed.isEmpty();
+    }
+
+    /**
+     * 执行提交（更新跟踪的文件，清理暂存区），返回提交后的跟踪文件映射
+     * @return Map with file path as key and SHA1 id as value.
+     */
+    public Map<String, String> commit() {
+        // tracked维护commit过的文件的当前状况（注意区别，tracked是所有commit过的文件的状况，added和remove记录的是变化）
+        // 所以putAll 根据增量更新tracked
+        tracked.putAll(added);
+        // 遍历remove，更新tracked
+        for (String filePath : removed) {
+            tracked.remove(filePath);
+        }
+        // 清除暂存区
+        clear();
+        // 返回当前的快照给commit保存
+        return tracked;
+    }
+
+    // 清空暂存区
+    public void clear() {
+        added.clear();
+        removed.clear();
+    }
+
+    /**
+     * 从暂存区中移除文件，一个是add中移除，不然后面commit会个加回去，然后把本地文件也删除了（这个逻辑可选其实），
+     * 最后把路径放入remove，后面commit的时候才会修改（注意只有commit操作会更改tracked，tracked就是提交的版本快照）
+     * @param file File instance
+     * @return true if the staging area is changed
+     */
+    public boolean remove(File file) {
+        String filePath = file.getPath();
+        // 该文件有变化，移除变化
+        String addedBlobId = added.remove(filePath);
+        // 该文件没有变化，且工作区有该文件，移除跟踪，并添加到remove
+        if (tracked.get(filePath) != null) {
+            if (file.exists()) {
+                rm(file);
+            }
+            return removed.add(filePath);
+        }
+        return false;
+    }
+
+    // 删除file
+    public static void rm(File file) {
+        if (!file.delete()) {
+            throw new IllegalArgumentException(String.format("rm: %s: Failed to delete.", file.getPath()));
+        }
+    }
+
+    /**
+     * 获取已添加的文件映射
+     *
+     * @return Map with file path as key and SHA1 id as value.
+     */
+    public Map<String, String> getAdded() {
+        return added;
+    }
+
+    /**
+     * 获取已删除的文件集合
+     *
+     * @return Set of files paths.
+     */
+    public Set<String> getRemoved() {
+        return removed;
+    }
+
 
 }

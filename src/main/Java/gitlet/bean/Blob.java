@@ -2,11 +2,11 @@ package gitlet.bean;
 
 import java.io.File;
 import java.io.Serializable;
+import java.nio.charset.StandardCharsets;
 
 import static gitlet.util.MyUtils.getObjectFile;
 import static gitlet.util.MyUtils.saveObjectFile;
-import static gitlet.util.Utils.readContents;
-import static gitlet.util.Utils.sha1;
+import static gitlet.util.Utils.*;
 
 // 代表gitlet管理的文件对象
 public class Blob implements Serializable {
@@ -41,5 +41,35 @@ public class Blob implements Serializable {
     public File getFile() {
         return file;
     }
+
+    /**
+     * 根据传入的文件，基于path和内容生成id
+     * @param sourceFile File instance
+     * @return SHA1 id
+     */
+    public static String generateId(File sourceFile) {
+        String filePath = sourceFile.getPath();
+        byte[] fileContent = readContents(sourceFile);
+        return sha1(filePath, fileContent);
+    }
+
+    // 根据id读取Blob对象
+    public static Blob fromFile(String id) {
+        return readObject(getObjectFile(id), Blob.class);
+    }
+
+    // 把blob文件的内容写回blob的源文件
+    public void writeContentToSource() {
+        writeContents(source, content);
+    }
+
+    /**
+     * 返回blob对应文件的内容（utf-8编码）.
+     * @return Blob content
+     */
+    public String getContentAsString() {
+        return new String(content, StandardCharsets.UTF_8);
+    }
+
 
 }
